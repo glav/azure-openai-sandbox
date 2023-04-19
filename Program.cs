@@ -18,7 +18,7 @@ namespace azure_openai_sandbox
                 return;
             }
 
-            var configValue = appConfig["configValue"];
+            var configValue = appConfig["endpoint"];
 			Console.WriteLine("Got config value: [{0}]",configValue);
 
         }
@@ -30,6 +30,7 @@ namespace azure_openai_sandbox
 				.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environmentName}.json", true, true)
+                .AddJsonFile($"appsettings.local.json", true, true)
                 .AddEnvironmentVariables()
                 .Build();
 
