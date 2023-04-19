@@ -18,8 +18,12 @@ namespace azure_openai_sandbox
                 return;
             }
 
-            var configValue = appConfig["endpoint"];
-			Console.WriteLine("Got config value: [{0}]",configValue);
+            var config = new Config { 
+                Endpoint = appConfig["endpoint"], 
+                ApiKey = appConfig["apiKey"], 
+                ModelName = appConfig["aiModelName"]};
+            
+			Console.WriteLine("Using OpenAI endpoint: [{0}], model name [{1}]",config.Endpoint,config.ModelName);
 
         }
         static IConfigurationRoot LoadAppSettings()
