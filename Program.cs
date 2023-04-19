@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 namespace azure_openai_sandbox
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Console with App Settings!");
 
@@ -25,6 +26,8 @@ namespace azure_openai_sandbox
             
 			Console.WriteLine("Using OpenAI endpoint: [{0}], model name [{1}]",config.Endpoint,config.ModelName);
 
+            var openAi = new OpenAIEngine(config);
+            await openAi.RunGenerator();
         }
         static IConfigurationRoot LoadAppSettings()
         {
